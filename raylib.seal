@@ -1,0 +1,199 @@
+include raylib
+
+extern const keys = {
+  KEY_NULL = 0,
+  KEY_APOSTROPHE = 39,
+  KEY_COMMA = 44,
+  KEY_MINUS = 45,
+  KEY_DOT = 46,
+  KEY_SLASH = 47,
+  KEY_ZERO = 48,
+  KEY_ONE = 49,
+  KEY_TWO = 50,
+  KEY_THREE = 51,
+  KEY_FOUR = 52,
+  KEY_FIVE = 53,
+  KEY_SIX = 54,
+  KEY_SEVEN = 55,
+  KEY_EIGHT = 56,
+  KEY_NINE = 57,
+  KEY_SEMICOLON = 59,
+  KEY_EQUAL = 61,
+
+  KEY_A = 65,
+  KEY_B = 66,
+  KEY_C = 67,
+  KEY_D = 68,
+  KEY_E = 69,
+  KEY_F = 70,
+  KEY_G = 71,
+  KEY_H = 72,
+  KEY_I = 73,
+  KEY_J = 74,
+  KEY_K = 75,
+  KEY_L = 76,
+  KEY_M = 77,
+  KEY_N = 78,
+  KEY_O = 79,
+  KEY_P = 80,
+  KEY_Q = 81,
+  KEY_R = 82,
+  KEY_S = 83,
+  KEY_T = 84,
+  KEY_U = 85,
+  KEY_V = 86,
+  KEY_W = 87,
+  KEY_X = 88,
+  KEY_Y = 89,
+  KEY_Z = 90,
+
+  KEY_LEFT_BRACKET = 91,
+  KEY_BACKSLASH = 92,
+  KEY_RIGHT_BRACKET = 93,
+  KEY_GRAVE = 96,
+
+  KEY_SPACE = 32,
+  KEY_ESCAPE = 256,
+  KEY_ENTER = 257,
+  KEY_TAB = 258,
+  KEY_BACKSPACE = 259,
+  KEY_INSERT = 260,
+  KEY_DELETE = 261,
+  KEY_RIGHT = 262,
+  KEY_LEFT = 263,
+  KEY_DOWN = 264,
+  KEY_UP = 265,
+  KEY_PAGE_UP = 266,
+  KEY_PAGE_DOWN = 267,
+  KEY_HOME = 268,
+  KEY_END = 269,
+  KEY_CAPS_LOCK = 280,
+  KEY_SCROLL_LOCK = 281,
+  KEY_NUM_LOCK = 282,
+  KEY_PRINT_SCREEN = 283,
+  KEY_PAUSE = 284
+}
+  
+
+
+extern define color(r, g, b, a)
+  return {
+    r = r,
+    g = g,
+    b = b,
+    a = a
+  }
+
+extern define vec2(x, y)
+  return {
+    x = x,
+    y = y
+  }
+
+extern define load_texture(path)
+  return raylib:load_texture(path)
+
+extern define init_window(width, height, title)
+  raylib:init_window(width, height, title)
+
+extern define window_should_close()
+  return raylib:window_should_close()
+
+extern define clear_background(color)
+  raylib:clear_background(color)
+
+extern define begin_drawing()
+  raylib:begin_drawing()
+
+extern define end_drawing()
+  raylib:end_drawing()
+
+extern define close_window()
+  raylib:close_window()
+
+extern define set_fps(fps)
+  raylib:set_fps(fps)
+
+extern define get_fps()
+  return raylib:get_fps()
+
+extern define delta_time()
+  return raylib:delta_time()
+
+extern define draw_line(a, b, c, d, color)
+  raylib:draw_line(a, b, c, d, color)
+
+extern define draw_line_ex(start, end, thick, color)
+  raylib:draw_line_ex(start, end, thick, color)
+
+extern define draw_rectangle(x, y, w, h, color)
+  raylib:draw_rectangle(x, y, w, h, color)
+
+extern define draw_circle(x, y, radius, color)
+  raylib:draw_circle(x, y, radius, color)
+
+extern define draw_texture(texture, x, y, color)
+  raylib:draw_texture(texture, x, y, color)
+
+extern define draw_texture_v(texture, pos, color)
+  raylib:draw_texture_v(texture, pos, color)
+
+extern define draw_texture_ex(texture, pos, rot, scale, color)
+  raylib:draw_texture_ex(texture, pos, rot, scale, color)
+
+extern define is_key_down(key)
+  return raylib:is_key_down(key)
+
+extern define is_key_pressed(key)
+  return raylib:is_key_pressed(key)
+
+extern define set_exit_key(key)
+  raylib:set_exit_key(key)
+
+extern define show_cursor()
+  raylib:show_cursor()
+
+extern define hide_cursor()
+  raylib:hide_cursor()
+
+extern define is_cursor_hidden()
+  return raylib:is_cursor_hidden()
+
+extern define enable_cursor()
+  raylib:enable_cursor()
+
+extern define disable_cursor()
+  raylib:disable_cursor()
+
+extern define is_cursor_on_screen()
+  return raylib:is_cursor_on_screen()
+
+extern define is_mouse_down(button)
+  return raylib:is_mouse_down(button)
+
+extern define is_mouse_pressed(button)
+  return raylib:is_mouse_pressed(button)
+
+extern define mouse_x()
+  return raylib:mouse_x()
+
+extern define mouse_y()
+  return raylib:mouse_y()
+
+extern define mouse_pos()
+  return raylib:mouse_pos()
+
+extern define draw_text(text, x, y, size, color)
+  raylib:draw_text(text, x, y, size, color)
+
+extern define measure_text(text, size)
+  return raylib:measure_text(text, size)
+
+extern define load_font(path, size)
+  return raylib:load_font(path, size)
+
+extern define draw_text_ex(font, text, pos, font_size, spacing, color)
+  return raylib:draw_text_ex(font, text, pos, font_size, spacing, color)
+
+extern define get_key_pressed()
+  return raylib:get_key_pressed()

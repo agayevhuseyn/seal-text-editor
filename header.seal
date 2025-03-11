@@ -1,0 +1,94 @@
+extern define ascii(num)
+    
+    if num == 65 then return 'A'
+    if num == 66 then return 'B'
+    if num == 67 then return 'C'
+    if num == 68 then return 'D'
+    if num == 69 then return 'E'
+    if num == 70 then return 'F'
+    if num == 71 then return 'G'
+    if num == 72 then return 'H'
+    if num == 73 then return 'I'
+    if num == 74 then return 'J'
+    if num == 75 then return 'K'
+    if num == 76 then return 'L'
+    if num == 77 then return 'M'
+    if num == 78 then return 'N'
+    if num == 79 then return 'O'
+    if num == 80 then return 'P'
+    if num == 81 then return 'Q'
+    if num == 82 then return 'R'
+    if num == 83 then return 'S'
+    if num == 84 then return 'T'
+    if num == 85 then return 'U'
+    if num == 86 then return 'V'
+    if num == 87 then return 'W'
+    if num == 88 then return 'X'
+    if num == 89 then return 'Y'
+    if num == 90 then return 'Z'
+
+    if num == 97 then return 'a'
+    if num == 98 then return 'b'
+    if num == 99 then return 'c'
+    if num == 100 then return 'd'
+    if num == 101 then return 'e'
+    if num == 102 then return 'f'
+    if num == 103 then return 'g'
+    if num == 104 then return 'h'
+    if num == 105 then return 'i'
+    if num == 106 then return 'j'
+    if num == 107 then return 'k'
+    if num == 108 then return 'l'
+    if num == 109 then return 'm'
+    if num == 110 then return 'n'
+    if num == 111 then return 'o'
+    if num == 112 then return 'p'
+    if num == 113 then return 'q'
+    if num == 114 then return 'r'
+    if num == 115 then return 's'
+    if num == 116 then return 't'
+    if num == 117 then return 'u'
+    if num == 118 then return 'v'
+    if num == 119 then return 'w'
+    if num == 120 then return 'x'
+    if num == 121 then return 'y'
+    if num == 122 then return 'z'
+
+    if num == 48 then return '0'
+    if num == 49 then return '1'
+    if num == 50 then return '2'
+    if num == 51 then return '3'
+    if num == 52 then return '4'
+    if num == 53 then return '5'
+    if num == 54 then return '6'
+    if num == 55 then return '7'
+    if num == 56 then return '8'
+    if num == 57 then return '9'
+
+    if num == 32 then return ' '  // Space
+    if num == 33 then return '!'  // Exclamation mark
+    if num == 34 then return '"'  // Double quote
+    if num == 35 then return '#'  // Hash
+    if num == 36 then return '$'  // Dollar sign
+    if num == 37 then return '%'  // Percent sign
+    if num == 38 then return '&'  // Ampersand
+    if num == 39 then return '\'' // Apostrophe
+    if num == 40 then return '('  // Left parenthesis
+    if num == 41 then return ')'  // Right parenthesis
+    if num == 42 then return '*'  // Asterisk
+    if num == 43 then return '+'  // Plus sign
+    if num == 44 then return ','  // Comma
+    if num == 45 then return '-'  // Hyphen
+    if num == 46 then return '.'  // Period
+    if num == 47 then return '/'  // Slash
+    if num == 58 then return ':'  // Colon
+    if num == 59 then return ';'  // Semicolon
+    if num == 60 then return '<'  // Less than
+    if num == 61 then return '='  // Equal sign
+    if num == 62 then return '>'  // Greater than
+    if num == 63 then return '?'  // Question mark
+    if num == 64 then return '@'  // At symbol
+
+    // Add more symbols as needed...
+
+    return ''  // In case the number is not a valid ASCII value
