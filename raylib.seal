@@ -71,10 +71,50 @@ extern const keys = {
   KEY_SCROLL_LOCK = 281,
   KEY_NUM_LOCK = 282,
   KEY_PRINT_SCREEN = 283,
-  KEY_PAUSE = 284
+  KEY_PAUSE = 284,
+
+  KEY_F1 = 290,
+  KEY_F2 = 291,
+  KEY_F3 = 292,
+  KEY_F4 = 293,
+  KEY_F5 = 294,
+  KEY_F6 = 295,
+  KEY_F7 = 296,
+  KEY_F8 = 297,
+  KEY_F9 = 298,
+  KEY_F10 = 299,
+  KEY_F11 = 300,
+  KEY_F12 = 301,
+
+  KEY_LEFT_SHIFT = 340,
+  KEY_LEFT_CONTROL = 341,
+  KEY_LEFT_ALT = 342,
+  KEY_LEFT_SUPER = 343,
+  KEY_RIGHT_SHIFT = 344,
+  KEY_RIGHT_CONTROL = 345,
+  KEY_RIGHT_ALT = 346,
+  KEY_RIGHT_SUPER = 347,
+  KEY_KB_MENU = 348
 }
   
-
+extern const flags = {
+  FLAG_VSYNC_HINT         = 4 * 16 ^ 1,   // Set to try enabling V-Sync on GPU
+  FLAG_FULLSCREEN_MODE    = 2 * 16 ^ 0,   // Set to run program in fullscreen
+  FLAG_WINDOW_RESIZABLE   = 4 * 16 ^ 0,   // Set to allow resizable window
+  FLAG_WINDOW_UNDECORATED = 8 * 16 ^ 0,   // Set to disable window decoration (frame and buttons)
+  FLAG_WINDOW_HIDDEN      = 8 * 16 ^ 1,   // Set to hide window
+  FLAG_WINDOW_MINIMIZED   = 2 * 16 ^ 2,   // Set to minimize window (iconify)
+  FLAG_WINDOW_MAXIMIZED   = 4 * 16 ^ 2,   // Set to maximize window (expanded to monitor)
+  FLAG_WINDOW_UNFOCUSED   = 8 * 16 ^ 2,   // Set to window non focused
+  FLAG_WINDOW_TOPMOST     = 1 * 16 ^ 3,   // Set to window always on top
+  FLAG_WINDOW_ALWAYS_RUN  = 1 * 16 ^ 2,   // Set to allow windows running while minimized
+  FLAG_WINDOW_TRANSPARENT = 1 * 16 ^ 1,   // Set to allow transparent framebuffer
+  FLAG_WINDOW_HIGHDPI     = 2 * 16 ^ 3,   // Set to support HighDPI
+  FLAG_WINDOW_MOUSE_PASSTHROUGH = 4 * 16 ^ 3, // Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+  FLAG_BORDERLESS_WINDOWED_MODE = 8 * 16 ^ 3, // Set to run program in borderless windowed mode
+  FLAG_MSAA_4X_HINT       = 2 * 16 ^ 1,   // Set to try enabling MSAA 4X
+  FLAG_INTERLACED_HINT    = 1 * 16 ^ 4     // Set to try enabling interlaced video format (for V3D)
+}
 
 extern define color(r, g, b, a)
   return {
@@ -83,6 +123,10 @@ extern define color(r, g, b, a)
     b = b,
     a = a
   }
+
+extern const colors = {
+  ORANGE = color(255, 100, 20, 255)
+}
 
 extern define vec2(x, y)
   return {
@@ -147,6 +191,15 @@ extern define is_key_down(key)
 extern define is_key_pressed(key)
   return raylib:is_key_pressed(key)
 
+extern define is_key_pressed_repeat(key)
+  return raylib:is_key_pressed_repeat(key)
+
+extern define is_key_released(key)
+  return raylib:is_key_released(key)
+
+extern define is_key_up(key)
+  return raylib:is_key_up(key)
+
 extern define set_exit_key(key)
   raylib:set_exit_key(key)
 
@@ -197,3 +250,15 @@ extern define draw_text_ex(font, text, pos, font_size, spacing, color)
 
 extern define get_key_pressed()
   return raylib:get_key_pressed()
+
+extern define get_char_pressed()
+  return raylib:get_char_pressed()
+
+extern define set_config_flags(flag)
+  raylib:set_config_flags(flag)
+
+extern define get_screen_width()
+  return raylib:get_screen_width()
+
+extern define get_screen_height()
+  return raylib:get_screen_height()

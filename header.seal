@@ -1,5 +1,7 @@
+extern define insert(list, elem)
+  var copy
+
 extern define ascii(num)
-    
     if num == 65 then return 'A'
     if num == 66 then return 'B'
     if num == 67 then return 'C'

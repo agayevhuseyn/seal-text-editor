@@ -1,47 +1,64 @@
 include './raylib.seal'
 include './header.seal'
 
-
 const
-  WIDTH  = 800
-  HEIGHT = 600
   TITLE  = 'Seal Text Editor'
   FPS    = 60
   BG_COLOR = color(13, 17, 23, 255)
+var
+  width  = 800
+  height = 600
+  font_size = 32
+  cursor = 0
 
 var chars = ['h', 'e', 'l', 'l', 'o']
 
-init_window(WIDTH, HEIGHT, TITLE)
+set_config_flags(flags.FLAG_WINDOW_RESIZABLE)
+set_config_flags(flags.FLAG_MSAA_4X_HINT)
+init_window(width, height, TITLE)
 set_fps(FPS)
 //set_exit_key(keys.KEY_NULL)
-const font = load_font('JetBrainsMonoNerdFontMono-Regular.ttf', 96)
-
-var is_lower = true
+const font = load_font('JetBrainsMonoNerdFontMono-Regular.ttf', 256)
 
 while not window_should_close()
+  width  = get_screen_width()
+  height = get_screen_height()
   begin_drawing()
   clear_background(BG_COLOR)
-  if is_key_pressed(keys.KEY_BACKSPACE)
+  if is_key_pressed(keys.KEY_BACKSPACE) or is_key_pressed_repeat(keys.KEY_BACKSPACE)
     if len(chars) > 0 then pop(chars)
   else if is_key_pressed(keys.KEY_ENTER)
     push(chars, '\n')
   else if is_key_pressed(keys.KEY_TAB)
-    for _ in 4
-      push(chars, ' ')
-  else if is_key_pressed(keys.KEY_CAPS_LOCK)
-    is_lower = !is_lower
+    push(chars, '\t')
+  else if (is_key_down(keys.KEY_LEFT_CONTROL) or
+           is_key_down(keys.KEY_RIGHT_CONTROL))
+    if is_key_pressed(keys.KEY_EQUAL) or is_key_pressed_repeat(keys.KEY_EQUAL)
+      font_size = font_size + 2
+    else if is_key_pressed(keys.KEY_MINUS) or is_key_pressed_repeat(keys.KEY_MINUS)
+      font_size = font_size - 2
   else
-    var key = get_key_pressed()
+    var key = get_char_pressed()
     if key != 0
       writeln(key)
-      push(chars, ascii(key + if is_lower then 32 else 0))
-  var pos = vec2(20, 20)
+      push(chars, ascii(key))
+  var pos = vec2(font_size / 2, font_size / 2)
   for c in chars
     if c == '\n'
-      pos.y = pos.y + 32
-      pos.x = 20
-    else pos.x = pos.x + 16
-    draw_text_ex(font, c, pos, 32, 0, color(255, 255, 255, 255))
+      pos.y = pos.y + font_size
+      pos.x = font_size / 2 
+      skip
+    else if c == '\t'
+      pos.x = pos.x + 4 * font_size / 2
+    else
+        pos.x = pos.x + font_size / 2
+    draw_rectangle(pos.x, pos.y, font_size / 2, font_size, colors.ORANGE)
+    draw_text_ex(font, c, pos, font_size, 0, color(255, 255, 255, 255))
+    if pos.x + font_size > width
+      pos.x = font_size / 2
+      pos.y = pos.y + font_size
+  // cursor
+  draw_rectangle(pos.x + font_size / 2, pos.y, font_size / 2, font_size, color(255, 255, 255, 255))
   end_drawing()
 
 close_window()
