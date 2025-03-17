@@ -8,8 +8,9 @@ const
 var
   width  = 800
   height = 600
-  font_size = 32
-  cursor = 0
+  font_size = 64
+  is_file_loaded = false
+  file
 
 var chars = ['h', 'e', 'l', 'l', 'o']
 
@@ -23,42 +24,73 @@ const font = load_font('JetBrainsMonoNerdFontMono-Regular.ttf', 256)
 while not window_should_close()
   width  = get_screen_width()
   height = get_screen_height()
+
+  if !is_file_loaded
+    if is_key_pressed(keys.KEY_BACKSPACE) or is_key_pressed_repeat(keys.KEY_BACKSPACE)
+      if len(chars) > 0 then pop(chars)
+    else if is_key_pressed(keys.KEY_ENTER)
+      var path = ''
+      for c in chars do path += c
+      if (file = fopen(path, 'r')) == null
+        writeln('invalid file')
+      else
+        chars = []
+        for c in fread(file)
+          push(chars, c)
+        fclose(file)
+        is_file_loaded = true
+    else
+      var key = get_char_pressed()
+      if key != 0
+        var char = ascii(key)
+        if char != ''
+          push(chars, char)
+  else
+    if is_key_pressed(keys.KEY_BACKSPACE) or is_key_pressed_repeat(keys.KEY_BACKSPACE)
+      if len(chars) > 0 then pop(chars)
+    else if is_key_pressed(keys.KEY_ENTER)
+      push(chars, '\n')
+    else if is_key_pressed(keys.KEY_TAB)
+      push(chars, '\t')
+    else if (is_key_down(keys.KEY_LEFT_CONTROL) or
+             is_key_down(keys.KEY_RIGHT_CONTROL))
+      if is_key_pressed(keys.KEY_EQUAL) or is_key_pressed_repeat(keys.KEY_EQUAL)
+        font_size = font_size + 2
+      else if is_key_pressed(keys.KEY_MINUS) or is_key_pressed_repeat(keys.KEY_MINUS)
+        font_size = font_size - 2
+    else
+      var key = get_char_pressed()
+      if key != 0
+        var char = ascii(key)
+        if char != ''
+          push(chars, char)
+
   begin_drawing()
   clear_background(BG_COLOR)
-  if is_key_pressed(keys.KEY_BACKSPACE) or is_key_pressed_repeat(keys.KEY_BACKSPACE)
-    if len(chars) > 0 then pop(chars)
-  else if is_key_pressed(keys.KEY_ENTER)
-    push(chars, '\n')
-  else if is_key_pressed(keys.KEY_TAB)
-    push(chars, '\t')
-  else if (is_key_down(keys.KEY_LEFT_CONTROL) or
-           is_key_down(keys.KEY_RIGHT_CONTROL))
-    if is_key_pressed(keys.KEY_EQUAL) or is_key_pressed_repeat(keys.KEY_EQUAL)
-      font_size = font_size + 2
-    else if is_key_pressed(keys.KEY_MINUS) or is_key_pressed_repeat(keys.KEY_MINUS)
-      font_size = font_size - 2
-  else
-    var key = get_char_pressed()
-    if key != 0
-      writeln(key)
-      push(chars, ascii(key))
-  var pos = vec2(font_size / 2, font_size / 2)
+
+  var
+    pos = vec2(font_size, font_size / 2)
+    line = 1
+
+  // FPS
+  draw_text_ex(font, format('%', get_fps()), vec2(20, 20), 32, 0, color(255, 0, 0, 255))
+  // draw first line
+  draw_text_ex(font, format('%', line), vec2(font_size / 4, pos.y), font_size, 0, color(255, 255, 255, 50))
   for c in chars
-    if c == '\n'
-      pos.y = pos.y + font_size
-      pos.x = font_size / 2 
-      skip
-    else if c == '\t'
-      pos.x = pos.x + 4 * font_size / 2
-    else
-        pos.x = pos.x + font_size / 2
     draw_rectangle(pos.x, pos.y, font_size / 2, font_size, colors.ORANGE)
-    draw_text_ex(font, c, pos, font_size, 0, color(255, 255, 255, 255))
-    if pos.x + font_size > width
-      pos.x = font_size / 2
-      pos.y = pos.y + font_size
-  // cursor
-  draw_rectangle(pos.x + font_size / 2, pos.y, font_size / 2, font_size, color(255, 255, 255, 255))
+    draw_text_ex(font, c, pos, font_size, 0, colors.WHITE)
+    if c == '\n'
+      pos.x = font_size
+      pos.y += font_size
+      line += 1
+      draw_text_ex(font, format('%', line), vec2(font_size / 4, pos.y), font_size, 0, color(255, 255, 255, 50))
+    else if c == '\t'
+      if (pos.x += font_size / 2 * 4) >= width
+        pos.x = font_size
+        pos.y += font_size
+    else if (pos.x += font_size / 2) + font_size / 2 >= width
+      pos.x = font_size
+      pos.y += font_size
   end_drawing()
 
 close_window()

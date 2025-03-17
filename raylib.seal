@@ -52,6 +52,7 @@ extern const keys = {
   KEY_RIGHT_BRACKET = 93,
   KEY_GRAVE = 96,
 
+  // function keys
   KEY_SPACE = 32,
   KEY_ESCAPE = 256,
   KEY_ENTER = 257,
@@ -73,6 +74,7 @@ extern const keys = {
   KEY_PRINT_SCREEN = 283,
   KEY_PAUSE = 284,
 
+  // F
   KEY_F1 = 290,
   KEY_F2 = 291,
   KEY_F3 = 292,
@@ -86,6 +88,7 @@ extern const keys = {
   KEY_F11 = 300,
   KEY_F12 = 301,
 
+  // control
   KEY_LEFT_SHIFT = 340,
   KEY_LEFT_CONTROL = 341,
   KEY_LEFT_ALT = 342,
@@ -94,7 +97,32 @@ extern const keys = {
   KEY_RIGHT_CONTROL = 345,
   KEY_RIGHT_ALT = 346,
   KEY_RIGHT_SUPER = 347,
-  KEY_KB_MENU = 348
+  KEY_KB_MENU = 348,
+
+  // keypad keys
+  KEY_KP_0 = 320,
+  KEY_KP_1 = 321,
+  KEY_KP_2 = 322,
+  KEY_KP_3 = 323,
+  KEY_KP_4 = 324,
+  KEY_KP_5 = 325,
+  KEY_KP_6 = 326,
+  KEY_KP_7 = 327,
+  KEY_KP_8 = 328,
+  KEY_KP_9 = 329,
+  KEY_KP_DECIMAL  = 330,
+  KEY_KP_DIVIDE   = 331,
+  KEY_KP_MULTIPLY = 332,
+  KEY_KP_SUBTRACT = 333,
+  KEY_KP_ADD      = 334,
+  KEY_KP_ENTER    = 335,
+  KEY_KP_EQUAL    = 336,
+
+  // android
+  KEY_BACK = 4,
+  KEY_MENU = 82,
+  KEY_VOLUME_UP = 24,
+  KEY_VOLUME_DOWN = 25
 }
   
 extern const flags = {
@@ -125,7 +153,13 @@ extern define color(r, g, b, a)
   }
 
 extern const colors = {
-  ORANGE = color(255, 100, 20, 255)
+  ORANGE = color(255, 100, 20, 255),
+  LILAC  = color(147, 148, 205, 255),
+  BLACK  = color(0, 0, 0, 255),
+  WHITE  = color(255, 255, 255, 255),
+  GRAY   = color(130, 130, 130, 255),
+  LIGHTGRAY = color(220, 220, 220, 255),
+  EMPTY  = color(0, 0, 0, 0)
 }
 
 extern define vec2(x, y)
@@ -227,6 +261,12 @@ extern define is_mouse_down(button)
 extern define is_mouse_pressed(button)
   return raylib:is_mouse_pressed(button)
 
+extern define is_mouse_released(button)
+  return raylib:is_mouse_released(button)
+
+extern define is_mouse_up(button)
+  return raylib:is_mouse_up(button)
+
 extern define mouse_x()
   return raylib:mouse_x()
 
@@ -262,3 +302,30 @@ extern define get_screen_width()
 
 extern define get_screen_height()
   return raylib:get_screen_height()
+
+extern define init_audio_device()
+  raylib:init_audio_device()
+
+extern define close_audio_device()
+  raylib:close_audio_device()
+
+extern define is_audio_device_ready()
+  return raylib:is_audio_device_ready()
+
+extern define load_sound(path)
+  return raylib:load_sound(path)
+
+extern define play_sound(sound)
+  raylib:play_sound(sound)
+
+extern define stop_sound(sound)
+  raylib:stop_sound(sound)
+
+extern define pause_sound(sound)
+  raylib:pause_sound(sound)
+
+extern define resume_sound(sound)
+  raylib:resume_sound(sound)
+
+extern define is_sound_playing(sound)
+  return raylib:is_sound_playing(sound)
