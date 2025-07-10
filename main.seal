@@ -1,16 +1,15 @@
-include './raylib.seal'
-include './header.seal'
+include raylib as rl
 
-const
-  TITLE  = 'Seal Text Editor'
-  FPS    = 60
-  BG_COLOR = color(13, 17, 23, 255)
-var
-  width  = 800
-  height = 600
-  font_size = 64
-  is_file_loaded = false
-  file
+
+$TITLE  = 'Seal Text Editor'
+$FPS    = 60
+$BG_COLOR = color(13, 17, 23, 255)
+
+$width  = 800
+$height = 600
+$font_size = 64
+$is_file_loaded = false
+$file
 
 var chars = ['h', 'e', 'l', 'l', 'o']
 
